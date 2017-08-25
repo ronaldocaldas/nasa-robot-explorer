@@ -87,4 +87,38 @@ public class MarsControllerTest {
 				.andExpect(jsonPath("$.actualPosition").value("(4, 3, L)"));
 
 	}
+	
+	@Test
+	public void testPosiction5() throws Exception {
+		mockMvc.perform(post("/rest/mars/MRMMMMLMLM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(3, 2, W)"));
+
+	}
+	
+	@Test
+	public void testPosiction6() throws Exception {
+		mockMvc.perform(post("/rest/mars/MRMLMLM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(0, 2, W)"));
+
+	}
+	
+	@Test
+	public void testPosiction7() throws Exception {
+		mockMvc.perform(post("/rest/mars/MRMMM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(3, 1, L)"));
+
+	}
+	
+	
+	@Test
+	public void testPosiction8() throws Exception {
+		mockMvc.perform(post("/rest/mars/MRMMMLMRM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(4, 2, L)"));
+
+	}
+	
 }
