@@ -30,7 +30,7 @@ public class MarsController {
 	
 	
 	@GetMapping
-	public ModelAndView movimentaRobo() {
+	public ModelAndView telaWelcome() {
 		ModelAndView modelAndView = new ModelAndView("welcome");
 		return modelAndView;
 	}

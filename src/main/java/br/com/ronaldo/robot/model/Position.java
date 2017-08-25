@@ -3,29 +3,29 @@ package br.com.ronaldo.robot.model;
 public class Position {
 
 	// Limites com relação a borda N,S,L,W
-	private int limites[];
+	private int limits[];
 
-	private char direcao;
+	private char direction;
 
 	public Position() {
-		this.limites = new int[] { 4, 0, 4, 0 };
-		this.direcao = 'N';
+		this.limits = new int[] { 4, 0, 4, 0 };
+		this.direction = 'N';
 	}
 
 	public int[] getLimites() {
-		return limites;
+		return limits;
 	}
 
 	public void setLimites(int limites[]) {
-		this.limites = limites;
+		this.limits = limites;
 	}
 
-	public char getDirecao() {
-		return direcao;
+	public char getDirection() {
+		return direction;
 	}
 
-	public void setDirecao(char direcao) {
-		this.direcao = direcao;
+	public void setDirection(char direcao) {
+		this.direction = direcao;
 	}
 
 }

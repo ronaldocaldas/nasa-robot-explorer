@@ -2,6 +2,8 @@ package br.com.ronaldo.robot;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.servlet.RequestDispatcher;
@@ -39,9 +41,15 @@ public class MarsControllerTest {
 	}
 
 	@Test
-	public void error400BadRequest() throws Exception {
+	public void error400BadRequestInvalidChar() throws Exception {
 		this.mockMvc.perform(post("/rest/mars/AAAAA").requestAttr(RequestDispatcher.ERROR_STATUS_CODE, 400).requestAttr(
 				RequestDispatcher.ERROR_MESSAGE, "The 'movimento' parameter must not be diferent of 'M', 'L' or 'R'"));
+	}
+	
+	@Test
+	public void error400BadRequestFellOut() throws Exception {
+		this.mockMvc.perform(post("/rest/mars/MMMMMMMMMMMMMMMMMMMMMMMM").requestAttr(RequestDispatcher.ERROR_STATUS_CODE, 400).requestAttr(
+				RequestDispatcher.ERROR_MESSAGE, "The robot fell out dude! Build another one..."));
 	}
 
 }
