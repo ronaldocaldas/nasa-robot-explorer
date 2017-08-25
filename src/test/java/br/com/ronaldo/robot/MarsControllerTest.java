@@ -59,4 +59,13 @@ public class MarsControllerTest {
 				.andExpect(jsonPath("$.actualPosition").value("(2, 0, S)"));
 
 	}
+	
+	@Test
+	public void testPosiction2() throws Exception {
+		mockMvc.perform(post("/rest/mars/MRMMMMLM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(0, 2, N)"));
+
+	}
+	
 }
