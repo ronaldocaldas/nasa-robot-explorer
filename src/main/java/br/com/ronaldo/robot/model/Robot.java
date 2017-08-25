@@ -1,5 +1,11 @@
 package br.com.ronaldo.robot.model;
 
+/**
+ * Classe representando o Robô
+ * 
+ * @author ronaldocaldas
+ *
+ */
 public class Robot {
 
 	private Position posicao;
@@ -33,27 +39,27 @@ public class Robot {
 				switch (this.posicao.getDirection()) {
 				case 'N':
 					this.getPosicao().getLimites()[0]--;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					this.getPosicao().getLimites()[1]++;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					break;
 				case 'S':
 					this.getPosicao().getLimites()[0]++;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					this.getPosicao().getLimites()[1]--;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					break;
 				case 'L':
 					this.getPosicao().getLimites()[2]--;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					this.getPosicao().getLimites()[3]++;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					break;
 				case 'W':
 					this.getPosicao().getLimites()[2]++;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					this.getPosicao().getLimites()[3]--;
-					verifyLimits(this.getPosicao().getLimites());
+					this.getPosicao().verifyLimits();
 					break;
 				default:
 					break;
@@ -61,23 +67,9 @@ public class Robot {
 			}
 		}
 
-		this.getPosicao().setActualPosition(updateActualPosition(this.getPosicao().getLimites()));
+		this.getPosicao().setActualPosition(this.getPosicao().updateActualPosition());
 		return entry;
 
-	}
-
-	/**
-	 * Verifica se o robo ultrapassou os limites do terreno, isto é, caso o
-	 * valor de alguns dos limites for menor que 0
-	 * 
-	 * @param limites
-	 */
-	private void verifyLimits(int[] limites) {
-		for (int i = 0; i < limites.length; i++) {
-			if (limites[i] < 0) {
-				throw new IllegalArgumentException("The robot fell out dude! Build another one...");
-			}
-		}
 	}
 
 	/**
@@ -133,16 +125,6 @@ public class Robot {
 				throw new IllegalArgumentException("The 'movimento' parameter must not be diferent of 'M', 'L' or 'R'");
 			}
 		}
-	}
-	
-	
-	private String updateActualPosition(int[] limits){
-		if(this.posicao.getDirection() == 'S' || this.posicao.getDirection() == 'N'){
-			return "("+limits[2]+", "+limits[1]+", "+this.posicao.getDirection()+")";
-		}else{
-			return "("+limits[3]+", "+limits[1]+", "+this.posicao.getDirection()+")";
-		}
-		
 	}
 
 	public Position getPosicao() {
