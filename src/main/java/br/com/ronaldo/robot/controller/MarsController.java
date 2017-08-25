@@ -29,13 +29,11 @@ public class MarsController {
 		 return robo.getPosicao();
 	}
 	
-	
 	@GetMapping
 	public ModelAndView telaWelcome() {
 		ModelAndView modelAndView = new ModelAndView("welcome");
 		return modelAndView;
 	}
-	
 
 	@ExceptionHandler
 	void handleIllegalArgumentException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
