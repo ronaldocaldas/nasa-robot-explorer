@@ -68,4 +68,23 @@ public class MarsControllerTest {
 
 	}
 	
+	@Test
+	public void testPosiction3() throws Exception {
+		mockMvc.perform(post("/rest/mars/MMMMRMMRM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(2, 3, S)"));
+
+	}
+	
+	@Test
+	public void testPosiction4() throws Exception {
+		//OBS: aqui eu levei em consideração que quando o robô está virado para o Sul e vira para a esquerda ele vira para o OESTE
+		//ou seja, muda com relação ao seu  próprio eixo, e não com relação ao observador.
+		//Isso não estava especificado no teste, portanto deduzi que esse seria o comportamento esperado.
+		
+		mockMvc.perform(post("/rest/mars/MMMMRMMRMLMM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(4, 3, L)"));
+
+	}
 }
