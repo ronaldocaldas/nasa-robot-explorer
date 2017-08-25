@@ -6,6 +6,8 @@ public class Position {
 	private int limits[];
 
 	private char direction;
+	
+	private String actualPosition;
 
 	public Position() {
 		this.limits = new int[] { 4, 0, 4, 0 };
@@ -26,6 +28,14 @@ public class Position {
 
 	public void setDirection(char direcao) {
 		this.direction = direcao;
+	}
+
+	public String getActualPosition() {
+		return actualPosition;
+	}
+
+	public void setActualPosition(String actualPosition) {
+		this.actualPosition = actualPosition;
 	}
 
 }

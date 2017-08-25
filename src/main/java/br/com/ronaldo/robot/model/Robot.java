@@ -61,6 +61,7 @@ public class Robot {
 			}
 		}
 
+		this.getPosicao().setActualPosition(updateActualPosition(this.getPosicao().getLimites()));
 		return entry;
 
 	}
@@ -76,9 +77,7 @@ public class Robot {
 			if (limites[i] < 0) {
 				throw new IllegalArgumentException("The robot fell out dude! Build another one...");
 			}
-
 		}
-
 	}
 
 	/**
@@ -134,6 +133,16 @@ public class Robot {
 				throw new IllegalArgumentException("The 'movimento' parameter must not be diferent of 'M', 'L' or 'R'");
 			}
 		}
+	}
+	
+	
+	private String updateActualPosition(int[] limits){
+		if(this.posicao.getDirection() == 'S' || this.posicao.getDirection() == 'N'){
+			return "("+limits[2]+", "+limits[1]+", "+this.posicao.getDirection()+")";
+		}else{
+			return "("+limits[3]+", "+limits[1]+", "+this.posicao.getDirection()+")";
+		}
+		
 	}
 
 	public Position getPosicao() {

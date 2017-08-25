@@ -52,4 +52,11 @@ public class MarsControllerTest {
 				RequestDispatcher.ERROR_MESSAGE, "The robot fell out dude! Build another one..."));
 	}
 
+	@Test
+	public void testPosiction1() throws Exception {
+		mockMvc.perform(post("/rest/mars/MMRMMRMM")).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.actualPosition").value("(2, 0, S)"));
+
+	}
 }

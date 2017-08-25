@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.ronaldo.robot.model.Position;
 import br.com.ronaldo.robot.model.Robot;
 
 @RestController
@@ -22,10 +23,10 @@ public class MarsController {
 	Robot robo;
 
 	@RequestMapping(value="/rest/mars/{movimento}",method = RequestMethod.POST)
-	public Robot moveRobot(@PathVariable("movimento") String movimento) throws Exception {
+	public Position moveRobot(@PathVariable("movimento") String movimento) throws Exception {
 		robo = new Robot(); 
 		robo.processEntry(movimento);
-		 return robo;
+		 return robo.getPosicao();
 	}
 	
 	
